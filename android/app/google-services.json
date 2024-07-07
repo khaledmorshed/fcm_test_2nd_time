@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "921063598468",
+    "project_id": "fcm-for-second",
+    "storage_bucket": "fcm-for-second.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921063598468:android:1c14d7dbbc3b8d12b5d5d1",
+        "android_client_info": {
+          "package_name": "com.example.fcm_second"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGG4Watl0m7TND4rfJmfqKqhzBlgYMoME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

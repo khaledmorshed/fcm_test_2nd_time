@@ -102,7 +102,7 @@ class FCM {
   }
 
   terminateNotification() async {
-    LocalNotificationService().showNotification(body: "body", payLoad: "pa");
+  //  LocalNotificationService().showNotification(body: "body", payLoad: "pa");
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
     //print("initialMessage...termi....");

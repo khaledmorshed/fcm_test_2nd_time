@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fcm_second/utils/local_notification_service.dart';
+import 'package:fcm_second/utils/sharepreferences_class.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -29,7 +30,7 @@ class FCM {
   final titleCtlr = StreamController<String>.broadcast();
   final bodyCtlr = StreamController<String>.broadcast();
 
-  setNotifications() {
+  setNotifications() async{
     print("set...1");
     FirebaseMessaging.onBackgroundMessage(onBackgroundMessage);
 
@@ -41,11 +42,19 @@ class FCM {
 
     // handle when app completely closed by the user
     terminateNotification();
+   // print("fcmValue....fcmValue");
 
-    // With this token you can test it easily on your phone
-   _firebaseMessaging.getToken().then((token) async{
-     print("token - ${token!}");
-   });
+    String? fcmValue = await SharedPreferencesClass.getValue(SharedPreferencesClass.fcmToken);
+   print("fcmValue = $fcmValue...+${fcmValue == null}");
+    if(fcmValue == null){
+      // With this token you can test it easily on your phone
+      _firebaseMessaging.getToken().then((token) async{
+        print("token - ${token!}");
+        await SharedPreferencesClass.setValue(SharedPreferencesClass.fcmToken, token);
+        //print("t--${await SharedPreferencesClass.getValue(SharedPreferencesClass.fcmToken)}");
+      });
+
+    }
 
   }
 

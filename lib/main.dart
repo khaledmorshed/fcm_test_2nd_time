@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     final firebaseMessaging = FCM();
-    firebaseMessaging.setNotifications();
+      firebaseMessaging.setNotifications();
 
     FirebaseMessaging.instance.getInitialMessage().then(
           (value) => setState(

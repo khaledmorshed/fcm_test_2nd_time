@@ -12,9 +12,9 @@ import 'utils/global_context.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await setupFlutterNotifications();
 }
 
@@ -38,11 +38,18 @@ late AndroidNotificationChannel channel;
 bool isFlutterLocalNotificationsInitialized = false;
 
 Future<void> setupFlutterNotifications() async {
+  print("setup....");
   if (isFlutterLocalNotificationsInitialized) {
     return;
   }
-  channel = const AndroidNotificationChannel(
-    'high_importance_channel', // id
+  //this default_channel_id is equivalent to AndroidManifest.xml's default_channel_id
+  /*
+    android:name="com.google.firebase.messaging.default_notification_channel_id"
+     android:value="default_channel_id"/>
+  */
+  String channelId = "default_channel_id";
+  channel = AndroidNotificationChannel(
+    channelId, // id
     'High Importance Notifications', // title
     description:
     'This channel is used for important notifications.', // description
@@ -136,6 +143,7 @@ class _MyAppState extends State<MyApp> {
             //      one that already exists in example app.
            // icon: 'ic_launcher',
             icon: 'mipmap/ic_launcher',
+            importance: Importance.high
           ),
         ),
       );

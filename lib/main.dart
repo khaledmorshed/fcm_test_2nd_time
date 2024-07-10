@@ -22,6 +22,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 
 Future<void> main() async {
+  print("main.....");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -98,6 +99,7 @@ class _MyAppState extends State<MyApp> {
     FirebaseMessaging.instance.getInitialMessage().then(
           (value) => setState(
             () {
+              print("getInitialMessage....");
           _resolved = true;
           initialMessage = value?.data.toString();
           if (initialMessage != null) {
@@ -116,6 +118,7 @@ class _MyAppState extends State<MyApp> {
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print("onMessageOpenedApp..");
       // var route = NavigationHistoryObserver().top;
       // if(route!=null && route.settings.name!=NotificationScreen.routeName){
       //   NavigationService.navigatorKey.currentState?.pushNamed(NotificationScreen.routeName);
